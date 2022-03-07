@@ -1,0 +1,8 @@
+.venv
+venv/
+venv.bak/
+*.log
+*.pot
+*.pyc
+__pycache__/
+media
