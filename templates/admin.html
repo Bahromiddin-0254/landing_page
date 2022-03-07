@@ -1,0 +1,71 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="It is a simple product landing website" />
+    <meta name="keywords" content="Bensen,product,onepage,app,promote,agency,business" />
+
+
+    <!--====== TITLE TAG ======-->
+    <title>Bensen- Product landing Template</title>
+
+
+    <!--====== STYLESHEETS =======-->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/icofont.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/modal-video.min.css'%}">
+
+    <!--====== OWL CAROUSEL STYLESHEETS ======-->
+    <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css'%}">
+
+    <!--====== MAIN STYLESHEETS ======-->
+    <link href="{% static 'assets/css/style.css'%}" rel="stylesheet">
+    <link href="{% static 'assets/css/responsive.css'%}" rel="stylesheet">
+
+</head>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+</style>
+<body data-spy="scroll" data-target="#main-nav" data-offset="60">
+    <table>
+        <tr><td>FIO</td>{% for date in dates %}<td>{{date.date|date:'d.m.Y'}}</td>{% endfor %}<td>Jami:</td></tr>
+        {%for emp in employees%}
+        <tr><td>{{emp.surname}} {{emp.name}}</td>{% for date in dates %}<td>{% for i in date.dailywh_set.all%}{% ifequal i.employee emp %}{{i.current}}/{{i.total}}{% endifequal %}{%endfor%}</td>{% endfor %}<td>{{emp.current.current__sum}}/{{emp.total.total__sum}}</td></tr>
+
+        {% endfor %}
+    </table>
+
+  
+
+
+
+    <!--====== SCRIPTS JS ======-->
+    <script src="{% static 'assets/js/jquery.min.js'%}"></script>
+    <script src="{% static 'assets/js/vendor/popper.min.js'%}"></script>
+    <script src="{% static 'assets/js/vendor/bootstrap.min.js'%}"></script>
+
+    <!--====== PLUGINS JS ======-->
+
+    <script src="{% static 'assets/js/waypoints.min.js'%}"></script>
+    <script src="{% static 'assets/js/scrollit.js'%}"></script>
+    <script src="{% static 'assets/js/owl-carousel.2.3.0.min.js'%}"></script>
+    <script src="{% static 'assets/js/jquery-modal-video.min.js'%}"></script>
+
+    <!--===== Custom ACTIVE JS=====-->
+    <script src="{% static 'assets/js/main.js'%}"></script>
+
+
+
+</body>
+
+</html>
