@@ -7,17 +7,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
 from django.conf import settings
 from main.models import *
-from django import template
 # Create your views here.
-register = template.Library()
-@register.filter
-def get(things, category):
-        return things.get(employee=category)
+
 def index(request):
     return render(request, 'index.html')
 @login_required(login_url="/login/")
 def admin(request):
-
+    
     employees = Employee.objects.all()
     dates = Date.objects.all()
     return render(request, 'admin.html', {'employees':employees, 'dates':dates})
@@ -29,9 +25,7 @@ def login(request):
         if form.is_valid():
             username=form.cleaned_data.get('username')
             password=form.cleaned_data.get('password')
-            print(username,password)
             user = authenticate(username=username,password=password)
-            print(user)
             if user is not None:
                 auth_login(request,user)
                 if user.is_staff:

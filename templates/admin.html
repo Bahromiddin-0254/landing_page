@@ -1,5 +1,7 @@
 {% load static %}
+{% load custom_tag %}
 <!doctype html>
+
 <html lang="en">
 
 <head>
@@ -40,7 +42,7 @@
     <table>
         <tr><td>FIO</td>{% for date in dates %}<td>{{date.date|date:'d.m.Y'}}</td>{% endfor %}<td>Jami:</td></tr>
         {%for emp in employees%}
-        <tr><td>{{emp.surname}} {{emp.name}}</td>{% for date in dates %}<td>{% for i in date.dailywh_set.all%}{% ifequal i.employee emp %}{{i.current}}/{{i.total}}{% endifequal %}{%endfor%}</td>{% endfor %}<td>{{emp.current.current__sum}}/{{emp.total.total__sum}}</td></tr>
+        <tr><td>{{emp.surname}} {{emp.name}}</td>{% for date in dates %}<td>{% with i=date.dailywh_set.all|get:emp  %}{{i.current}}/{{i.total}}{%endwith%}</td>{% endfor %}<td>{{emp.current.current__sum}}/{{emp.total.total__sum}}</td></tr>
 
         {% endfor %}
     </table>
